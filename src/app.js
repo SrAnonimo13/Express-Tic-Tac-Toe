@@ -22,11 +22,14 @@ let status = {NeedPlayers: "Waiting for more players...", PlayerExit:"Player Exi
 let players = {}
 
 io.on('connection', socket => {
-    console.log('Player connected');
-    
     addPlayer(socket.id, getValue());
+    
+    if(Object.keys(players).length < 2) 
+        socket.emit('status', status.NeedPlayers)
+    else 
+        io.emit('area', area, players);
 
-    if(Object.keys(players).length < 2) socket.emit('status', status.NeedPlayers); else io.emit('area', area, players);
+    console.log('Conexões: ',Object.keys(players).length); 
 
     socket.on('click', btnId => {
         let clickId = btnId.split('-');
@@ -44,11 +47,6 @@ io.on('connection', socket => {
             io.emit('status', status.PlayerExit);
         }
     })
-
-    for (player in players){
-        console.log(`Player ${player}, Symbol: ${players[player]} connected.`);
-    }
-    
 })
 
 function getValue(){
@@ -76,4 +74,5 @@ function updatePlayers(){
 
 function addPlayer(id, value){
     players[id] = value.toString();
+    console.log(`Player ${id}, Symbol: ${value} connected.`);
 }
