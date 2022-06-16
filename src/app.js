@@ -11,7 +11,7 @@ app.use(express.static(path.join(__dirname, '../', 'public')));
 
 server.listen(PORT, () => {
     console.clear();
-    console.log(`Servidor iniciado: http://localhost:${PORT}`);
+    console.log(`Server started at: http://localhost:${PORT}`);
 })
 
 //////////////////////////////////////////////////////////////////////////////////////////////
@@ -22,7 +22,7 @@ let status = {NeedPlayers: "Waiting for more players...", PlayerExit:"Player Exi
 let players = {}
 
 io.on('connection', socket => {
-    console.log('Cliente conectado');
+    console.log('Player connected');
     
     addPlayer(socket.id, getValue());
 
@@ -46,7 +46,7 @@ io.on('connection', socket => {
     })
 
     for (player in players){
-        console.log(`Jogador ${player}, Símbolo: ${players[player]}`);
+        console.log(`Player ${player}, Symbol: ${players[player]} connected.`);
     }
     
 })
@@ -55,7 +55,7 @@ function getValue(){
     let i = 0;
     for(let _id in players) i++;
     
-    return i < 1 ? 'O' : i < 2 ? 'X' : 'Spec';
+    return i < 1 ? 'O' : i < 2 ? 'X' : 'Spectator';
 }
 
 function appliedInArea(areaPosition, simbolo){
@@ -69,7 +69,7 @@ function updatePlayers(){
 
     let index = 0;
     for(let id in players){
-        if(index == 0) players[id] = "O"; else if(index == 1) players[id] = "X"; else players[id] = "Spec";
+        if(index == 0) players[id] = "O"; else if(index == 1) players[id] = "X"; else players[id] = "Spectator";
         index++;
     }
 }

@@ -42,7 +42,7 @@ function init(array){
             button.classList.add('not-clicked')
             button.innerText = array[i][j];
             button.addEventListener('click', e => {
-                if(button.classList.contains("not-clicked") && simbolo != "Spec"){
+                if(button.classList.contains("not-clicked") && simbolo != "Spectator"){
                     socket.emit('click', button.id)
                     button.classList.remove('not-clicked')
                 }
