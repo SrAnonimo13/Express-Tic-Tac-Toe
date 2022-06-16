@@ -5,12 +5,13 @@ const path = require('path');
 // @ts-ignore
 const { Server } = require('socket.io');
 const io = new Server(server);
+const PORT = 3000;
 
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, '../', 'public')));
 
-server.listen(3000, () => {
+server.listen(PORT, () => {
     console.clear();
-    console.log('Servidor iniciado');
+    console.log(`Servidor iniciado: http://localhost:${PORT}`);
 })
 
 //////////////////////////////////////////////////////////////////////////////////////////////
@@ -43,7 +44,11 @@ io.on('connection', socket => {
             io.emit('status', status.PlayerExit);
         }
     })
-    console.log(players);
+
+    for (player in players){
+        console.log(`Jogador ${player}, Símbolo: ${players[player]}`);
+    }
+    
 })
 
 function getValue(){

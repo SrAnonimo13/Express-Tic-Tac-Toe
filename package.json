@@ -8,7 +8,7 @@
   "name": "jogodavelhaonline",
   "version": "1.0.0",
   "description": "Jogo da velha foda",
-  "main": "app.js",
+  "main": "src/app.js",
   "scripts": {
     "start": "node .",
     "test": "echo \"Error: no test specified\" && exit 1"
