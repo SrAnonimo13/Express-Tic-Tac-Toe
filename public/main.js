@@ -1,12 +1,11 @@
-// @ts-ignore
 const socket = io();
-let jogo = document.getElementById('jogo');
+let container = document.getElementById('container');
 let simbolo = '';
 
 socket.on('area', (areaArray, playerData) => {
-    if(jogo.classList.contains('not-ready')){
-        jogo.classList.remove('not-ready');
-        jogo.innerHTML = "";
+    if(container.classList.contains('not-ready')){
+        container.classList.remove('not-ready');
+        container.innerHTML = "";
         simbolo = playerData[socket.id];
         init(areaArray);
     }
@@ -19,15 +18,15 @@ socket.on('update', (id, value) => {
 })
 
 socket.on('status', status => {
-    if(jogo.classList.contains('not-ready')){
+    if(container.classList.contains('not-ready')){
         document.getElementById('status').innerText = status;
     }else{
-        jogo.innerHTML = "";
+        container.innerHTML = "";
         let statusElem = document.createElement('h1')
         statusElem.id = "status";
         statusElem.innerText = status;
-        jogo.appendChild(statusElem);
-        jogo.classList.add('not-ready');
+        container.appendChild(statusElem);
+        container.classList.add('not-ready');
     }
 })
 
@@ -49,7 +48,7 @@ function init(array){
             })
             lista.appendChild(button);
         }
-        jogo.appendChild(lista);
+        container.appendChild(lista);
     }
     let gameStatusDiv = document.createElement('div');
     let gameStatusText = document.createElement('h3');
@@ -59,5 +58,5 @@ function init(array){
     gameStatusDiv.id = "DT";
 
     gameStatusDiv.appendChild(gameStatusText);
-    jogo.appendChild(gameStatusDiv);
+    container.appendChild(gameStatusDiv);
 }
