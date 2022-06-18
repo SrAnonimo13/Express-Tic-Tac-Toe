@@ -1,4 +1,4 @@
-# Express Tic Tac Toe 
+# Express Tic Tac Toe
 
 Real-time Tic Tac Toe over Express.js
 
@@ -18,11 +18,14 @@ Real-time Tic Tac Toe over Express.js
 - if more people connect, they'll be spectators
 
 ## To use:
- - After server initiation, access tha game by the URL given on the console
- - From the 3rd connection on, the clients will be considered Spectators
+
+- After server initiation, access tha game by the URL given on the console
+- From the 3rd connection on, the clients will be considered Spectators
 
 ### Frontend
+
 ![Frontend](.github/ref1.png "Frontend")
 
 ### Backend
+
 ![Backend](.github/ref2.png "Backend")
